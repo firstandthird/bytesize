@@ -1,10 +1,10 @@
-var filesize = require('filesize');
+var humanize = require('humanize');
 var zlib = require('zlib');
 var gzip = zlib.createGzip();
 var fs = require('fs');
 
 var prettyBytes = function(bytes) {
-  return (bytes < 1000) ? bytes+'B' : filesize(bytes);
+  return humanize.filesize(bytes);
 };
 
 module.exports = {
