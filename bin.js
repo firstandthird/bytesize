@@ -3,10 +3,10 @@ const bytesize = require('./index.js');
 const async = require('async');
 const argv = require('yargs')
 .usage('Usage: $0 [filename]')
-.option('pretty', {
+.option('stringsize', {
   alias: 's',
-  describe: 'pretty-print the gzip and file sizes',
-  default: true
+  describe: 'get the bytesize of the input string itself, instead of interpreting it as a file path',
+  default: false
 })
 .option('filesize', {
   alias: 'f',
@@ -28,6 +28,10 @@ const argv = require('yargs')
 })
 .help()
 .argv;
+
+if (argv.stringsize) {
+  return console.log('String size is %s', bytesize.stringSize(argv._.toString(), argv.pretty));
+}
 
 argv._.forEach((fileName) => {
   async.autoInject({
