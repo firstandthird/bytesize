@@ -24,7 +24,6 @@
     "eslint": "*",
     "eslint-config-firstandthird": "*",
     "eslint-plugin-import": "*",
-    "mocha": "~1.9.0",
     "tape": "^4.6.3"
   }
 }
