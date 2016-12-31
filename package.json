@@ -6,14 +6,25 @@
     "type": "git",
     "url": "https://github.com/jgallen23/bytesize.git"
   },
+  "bin": {
+    "bytesize": "bin.js"
+  },
+  "scripts": {
+    "test": "tape test/*.test.js"
+  },
   "dependencies": {
-    "humanize": "0.0.7"
+    "async": "^2.1.4",
+    "humanize": "0.0.7",
+    "yargs": "^6.6.0"
+  },
+  "eslintConfig": {
+    "extends": "firstandthird"
   },
   "devDependencies": {
+    "eslint": "*",
+    "eslint-config-firstandthird": "*",
+    "eslint-plugin-import": "*",
     "mocha": "~1.9.0",
-    "grunt": "~0.4.0",
-    "grunt-simple-mocha": "~0.4.0",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-watch": "~0.3.1"
+    "tape": "^4.6.3"
   }
 }

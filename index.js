@@ -1,36 +1,43 @@
-var humanize = require('humanize');
-var zlib = require('zlib');
-var gzip = zlib.createGzip();
-var fs = require('fs');
+'use strict';
+const humanize = require('humanize');
+const zlib = require('zlib');
+// const Gzip = zlib.createGzip();
+const fs = require('fs');
 
-var prettyBytes = function(bytes) {
+const prettyBytes = (bytes) => {
   return humanize.filesize(bytes);
 };
 
-module.exports = {
-  stringSize: function(str, pretty) {
-    var bytes = Buffer.byteLength(str);
-    return (pretty) ? prettyBytes(bytes) : bytes;
-  },
-  fileSize: function(file, pretty, callback, gzip) {
-    var self = this;
-    if (typeof pretty == 'function') {
-      callback = pretty;
-      pretty = false;
-    }
-    fs.readFile(file, 'utf8', function(err, file) {
-      if (gzip) {
-        zlib.gzip(file, function(err, buf) {
-          bytes = buf.length;
-          bytes = (pretty) ? prettyBytes(bytes) : bytes;
-          callback(err, bytes);
-        });
-      } else {
-        callback(err, self.stringSize(file, pretty));
-      }
-    });
-  },
-  gzipSize: function(file, pretty, callback) {
-    this.fileSize(file, pretty, callback, true);
-  }
+const stringSize = (str, pretty) => {
+  const bytes = Buffer.byteLength(str);
+  return (pretty) ? prettyBytes(bytes) : bytes;
 };
+
+const fileSize = (file, pretty, callback, gzip) => {
+  if (typeof pretty === 'function') {
+    callback = pretty;
+    pretty = false;
+  }
+  fs.readFile(file, 'utf8', (err, fileData) => {
+    if (err) {
+      return console.log(err);
+    }
+    if (gzip) {
+      zlib.gzip(fileData, (gzipErr, buf) => {
+        let bytes = buf.length;
+        bytes = (pretty) ? prettyBytes(bytes) : bytes;
+        callback(gzipErr, bytes);
+      });
+    } else {
+      return callback(err, stringSize(fileData, pretty));
+    }
+  });
+};
+
+const gzipSize = (file, pretty, callback) => {
+  fileSize(file, pretty, callback, true);
+};
+
+module.exports.stringSize = stringSize;
+module.exports.fileSize = fileSize;
+module.exports.gzipSize = gzipSize;
