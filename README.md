@@ -56,7 +56,7 @@ file3.txt:
   Uncompressed size: 702 bytes
 
 ```
-- _ --uncompressedHide, -u_, pass this to hide the raw uncompressed file size.  
+- _ --uncompressedHide, -u_, pass this to hide the raw uncompressed file size:  
 
 `> bytesize file1.txt file2.txt file3.txt --pretty -u`
 
