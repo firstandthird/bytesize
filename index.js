@@ -1,7 +1,6 @@
 'use strict';
 const humanize = require('humanize');
 const zlib = require('zlib');
-// const Gzip = zlib.createGzip();
 const fs = require('fs');
 
 const prettyBytes = (bytes) => {
