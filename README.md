@@ -12,14 +12,14 @@
 
 ```
 file1.txt:
-  file size: 1113
-  gzip size: 427 bytes
+  Uncompressed size: 1113
+    Compressed size: 427
 file2.txt:
-  file size: 605
-  gzip size: 326 bytes
+  Uncompressed size: 605
+    Compressed size: 326
 file3.txt:
-  file size: 605
-  gzip size: 326 bytes
+  Uncompressed size: 605
+    Compressed size: 326
 ```
 
 #### Options:
@@ -29,11 +29,14 @@ file3.txt:
 
 ```
 file1.txt:
-  file size: 11.09 Kb
+  Uncompressed size: 11.09 Kb
+    Compressed size: 427 bytes
 file2.txt:
-  file size: 605 bytes
+  Uncompressed size: 605 bytes
+    Compressed size: 326 bytes
 file3.txt:
-  file size: 605 bytes
+  Uncompressed size: 605 bytes
+    Compressed size: 326 bytes
 ```
 
 - _ --gzipsize, -g_, pass this to hide the gzip-compressed size of the file:  
@@ -42,11 +45,11 @@ file3.txt:
 
 ```
 file1.txt:
-  file size: 1.09 Kb
+  Uncompressed size: 1.09 Kb
 file2.txt:
-  file size: 605 bytes
+  Uncompressed size: 605 bytes
 file3.txt:
-  file size: 605 bytes
+  Uncompressed size: 605 bytes
 
 ```
 - _ --filesize, -f_, pass this to hide the raw file size.  
@@ -55,11 +58,11 @@ file3.txt:
 
 ```
 file1.txt:
-  gzip size: 427 bytes
+    Compressed size: 427 bytes
 file2.txt:
-  gzip size: 326 bytes
+    Compressed size: 326 bytes
 file3.txt:
-  gzip size: 326 bytes
+    Compressed size: 326 bytes
 
 ```
 
