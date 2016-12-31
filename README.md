@@ -1,8 +1,12 @@
-#bytesize
+# bytesize
 
-##Installation
+## Installation
 
-`npm install bytesize`
+`> npm install bytesize`.
+
+Or use
+
+`> npm install bytesize -g` to make the __bytesize__ executable available from your command line.
 
 ## From the Command Line:
 
@@ -18,8 +22,8 @@ file2.txt:
   Uncompressed size: 605
     Compressed size: 326
 file3.txt:
-  Uncompressed size: 605
-    Compressed size: 326
+  Uncompressed size: 702
+    Compressed size: 330
 ```
 
 #### Options:
@@ -35,13 +39,13 @@ file2.txt:
   Uncompressed size: 605 bytes
     Compressed size: 326 bytes
 file3.txt:
-  Uncompressed size: 605 bytes
-    Compressed size: 326 bytes
+  Uncompressed size: 702 bytes
+    Compressed size: 330 bytes
 ```
 
-- _ --gzipsize, -g_, pass this to hide the gzip-compressed size of the file:  
+- _ --compressedHide, -c_, pass this to hide the gzip-compressed size of the file:  
 
-`> bytesize file1.txt file2.txt file3.txt -g -p`
+`> bytesize file1.txt file2.txt file3.txt -c -p`
 
 ```
 file1.txt:
@@ -49,12 +53,12 @@ file1.txt:
 file2.txt:
   Uncompressed size: 605 bytes
 file3.txt:
-  Uncompressed size: 605 bytes
+  Uncompressed size: 702 bytes
 
 ```
-- _ --filesize, -f_, pass this to hide the raw file size.  
+- _ --uncompressedHide, -u_, pass this to hide the raw uncompressed file size.  
 
-`> bytesize file1.txt file2.txt file3.txt --pretty -filesize`
+`> bytesize file1.txt file2.txt file3.txt --pretty -u`
 
 ```
 file1.txt:
@@ -62,7 +66,7 @@ file1.txt:
 file2.txt:
     Compressed size: 326 bytes
 file3.txt:
-    Compressed size: 326 bytes
+    Compressed size: 330 bytes
 
 ```
 
