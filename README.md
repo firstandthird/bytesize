@@ -13,10 +13,13 @@
 ```
 file1.txt:
   file size: 1113
+  gzip size: 427 bytes
 file2.txt:
   file size: 605
+  gzip size: 326 bytes
 file3.txt:
   file size: 605
+  gzip size: 326 bytes
 ```
 
 #### Options:
@@ -33,25 +36,22 @@ file3.txt:
   file size: 605 bytes
 ```
 
-- _ --gzipsize, -g_, pass this option to print the gzip-compressed size of the file:  
+- _ --gzipsize, -g_, pass this to hide the gzip-compressed size of the file:  
 
 `> bytesize file1.txt file2.txt file3.txt -g -p`
 
 ```
 file1.txt:
   file size: 1.09 Kb
-  gzip size: 427 bytes
 file2.txt:
   file size: 605 bytes
-  gzip size: 326 bytes
 file3.txt:
   file size: 605 bytes
-  gzip size: 326 bytes
 
 ```
-- _ --filesize, -f_, by default bytesize prints the raw file size.  set this to 'false' to prevent bytesize from displaying it:
+- _ --filesize, -f_, pass this to hide the raw file size.  
 
-`> bytesize file1.txt file2.txt file3.txt -g --pretty -filesize false`
+`> bytesize file1.txt file2.txt file3.txt --pretty -filesize`
 
 ```
 file1.txt:

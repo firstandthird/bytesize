@@ -8,15 +8,15 @@ const argv = require('yargs')
   describe: 'get the bytesize of the input string itself, instead of interpreting it as a file path',
   default: false
 })
-.option('filesize', {
+.option('hidefile', {
   alias: 'f',
-  describe: 'show the raw file size',
-  default: true,
+  describe: 'hide the raw file size',
+  default: false,
   type: 'boolean'
 })
-.option('gzipsize', {
+.option('hidegzip', {
   alias: 'g',
-  describe: 'show the file size after gzip compression',
+  describe: 'hide the file size after gzip compression',
   default: false,
   type: 'boolean'
 })
@@ -36,13 +36,13 @@ if (argv.stringsize) {
 argv._.forEach((fileName) => {
   async.autoInject({
     gzipSize: (done) => {
-      if (argv.gzipsize) {
+      if (!argv.hidegzip) {
         return bytesize.gzipSize(fileName, argv.pretty, done);
       }
       done();
     },
     fileSize: (done) => {
-      if (argv.filesize) {
+      if (!argv.hidefile) {
         return bytesize.fileSize(fileName, argv.pretty, done, false);
       }
       done();
@@ -52,10 +52,10 @@ argv._.forEach((fileName) => {
       return console.log(err)
     }
     console.log('%s:', fileName);
-    if (argv.filesize) {
+    if (!argv.hidefile) {
       console.log('    file size: %s', results.fileSize);
     }
-    if (argv.gzipsize) {
+    if (!argv.hidegzip) {
       console.log('    gzip size: %s', results.gzipSize);
     }
   })
