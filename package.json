@@ -6,16 +6,11 @@
     "type": "git",
     "url": "https://github.com/firstandthird/bytesize.git"
   },
-  "bin": {
-    "bytesize": "bin.js"
-  },
   "scripts": {
     "test": "tape test/*.test.js"
   },
   "dependencies": {
-    "async": "^2.1.4",
-    "humanize": "0.0.7",
-    "yargs": "^6.6.0"
+    "humanize": "0.0.7"
   },
   "eslintConfig": {
     "extends": "firstandthird"
