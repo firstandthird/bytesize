@@ -1,46 +1,45 @@
-var assert = require('assert');
+'use strict';
+const test = require('tape')
+// var assert = require('assert');
 
-var bytesize = require('../');
+const bytesize = require('../');
 
-suite('bytesize', function() {
-
-  test('stringSize', function() {
-    var size = bytesize.stringSize('1 12 3 123 123');
-    assert.equal(size, 14);
-  });
-
-  test('pretty stringSize', function() {
-    var size = bytesize.stringSize('1 12 3 123 123', true);
-    assert.equal(size, '14 bytes');
-  });
-
-  test('fileSize', function(done) {
-    bytesize.fileSize(__dirname + '/fixtures/test.txt', function(err, size) {
-      assert.equal(size, 6660);
-      done();
-    });
-  });
-
-  test('pretty fileSize', function(done) {
-    bytesize.fileSize(__dirname + '/fixtures/test.txt', true, function(err, size) {
-      assert.equal(size, '6.50 Kb');
-      done();
-    });
-  });
-
-  test('gzipSize', function(done) {
-    bytesize.gzipSize(__dirname + '/fixtures/test.txt', function(err, size) {
-      assert.equal(size, 190);
-      done();
-    });
-  });
-
-  test('pretty gzipSize', function(done) {
-    bytesize.gzipSize(__dirname + '/fixtures/test.txt', true, function(err, size) {
-      assert.equal(size, '190 bytes');
-      done();
-    });
-  });
-
+test('stringSize', (t) => {
+  t.plan(1);
+  const size = bytesize.stringSize('1 12 3 123 123');
+  t.equal(size, 14);
 });
 
+test('pretty stringSize', (t) => {
+  t.plan(1);
+  const size = bytesize.stringSize('1 12 3 123 123', true);
+  t.equal(size, '14 bytes');
+});
+
+test('fileSize', (t) => {
+  t.plan(1);
+  bytesize.fileSize(`${__dirname}/fixtures/test.txt`, (err, size) => {
+    t.equal(size, 6696);
+  });
+});
+
+test('pretty fileSize', (t) => {
+  t.plan(1);
+  bytesize.fileSize(`${__dirname}/fixtures/test.txt`, true, (err, size) => {
+    t.equal(size, '6.54 Kb');
+  });
+});
+
+test('gzipSize', (t) => {
+  t.plan(1);
+  bytesize.gzipSize(`${__dirname}/fixtures/test.txt`, (err, size) => {
+    t.equal(size, 192);
+  });
+});
+
+test('pretty gzipSize', (t) => {
+  t.plan(1);
+  bytesize.gzipSize(`${__dirname}/fixtures/test.txt`, true, (err, size) => {
+    t.equal(size, '192 bytes');
+  });
+});

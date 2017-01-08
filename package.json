@@ -4,16 +4,21 @@
   "author": "Greg Allen <@jgaui> (http://jga.me)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jgallen23/bytesize.git"
+    "url": "https://github.com/firstandthird/bytesize.git"
+  },
+  "scripts": {
+    "test": "tape test/*.test.js"
   },
   "dependencies": {
     "humanize": "0.0.7"
   },
+  "eslintConfig": {
+    "extends": "firstandthird"
+  },
   "devDependencies": {
-    "mocha": "~1.9.0",
-    "grunt": "~0.4.0",
-    "grunt-simple-mocha": "~0.4.0",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-watch": "~0.3.1"
+    "eslint": "*",
+    "eslint-config-firstandthird": "*",
+    "eslint-plugin-import": "*",
+    "tape": "^4.6.3"
   }
 }
