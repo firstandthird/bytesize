@@ -1,46 +1,38 @@
-var assert = require('assert');
-
+const tap = require('tap');
 var bytesize = require('../');
 
-suite('bytesize', function() {
-
-  test('stringSize', function() {
-    var size = bytesize.stringSize('1 12 3 123 123');
-    assert.equal(size, 14);
-  });
-
-  test('pretty stringSize', function() {
-    var size = bytesize.stringSize('1 12 3 123 123', true);
-    assert.equal(size, '14 bytes');
-  });
-
-  test('fileSize', function(done) {
-    bytesize.fileSize(__dirname + '/fixtures/test.txt', function(err, size) {
-      assert.equal(size, 6660);
-      done();
-    });
-  });
-
-  test('pretty fileSize', function(done) {
-    bytesize.fileSize(__dirname + '/fixtures/test.txt', true, function(err, size) {
-      assert.equal(size, '6.50 Kb');
-      done();
-    });
-  });
-
-  test('gzipSize', function(done) {
-    bytesize.gzipSize(__dirname + '/fixtures/test.txt', function(err, size) {
-      assert.equal(size, 190);
-      done();
-    });
-  });
-
-  test('pretty gzipSize', function(done) {
-    bytesize.gzipSize(__dirname + '/fixtures/test.txt', true, function(err, size) {
-      assert.equal(size, '190 bytes');
-      done();
-    });
-  });
-
+tap.test('stringSize', (t) => {
+  const size = bytesize.stringSize('1 12 3 123 123');
+  t.equal(size, 14);
+  t.end();
+});
+tap.test('pretty stringSize', (t) => {
+  const size = bytesize.stringSize('1 12 3 123 123', true);
+  t.equal(size, '14 B');
+  t.end();
 });
 
+tap.test('fileSize', async(t) => {
+  const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt');
+  // t.equal(size, 6660);
+  t.equal(size, 6696);
+  t.end();
+});
+
+tap.test('pretty fileSize', async(t) => {
+  const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt', true);
+  t.equal(size, '6.7 kB');
+  t.end();
+});
+
+tap.test('gzipSize', async(t) => {
+  const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt');
+  t.equal(size, 192);
+  t.end();
+});
+
+tap.test('pretty gzipSize', async(t) => {
+  const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt', true);
+  t.equal(size, '192 B');
+  t.end();
+});

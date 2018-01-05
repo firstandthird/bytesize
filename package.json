@@ -6,14 +6,16 @@
     "type": "git",
     "url": "https://github.com/jgallen23/bytesize.git"
   },
+  "scripts": {
+    "test": "tap test --cov"
+  },
   "dependencies": {
-    "humanize": "0.0.7"
+    "pretty-bytes": "^4.0.2"
   },
   "devDependencies": {
-    "mocha": "~1.9.0",
-    "grunt": "~0.4.0",
-    "grunt-simple-mocha": "~0.4.0",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-watch": "~0.3.1"
+    "eslint": "^4.14.0",
+    "eslint-config-firstandthird": "^4.3.0",
+    "eslint-plugin-import": "^2.8.0",
+    "tap": "^11.0.1"
   }
 }

@@ -1,36 +1,35 @@
-var humanize = require('humanize');
-var zlib = require('zlib');
-var gzip = zlib.createGzip();
-var fs = require('fs');
+const zlib = require('zlib');
+const gzip = zlib.createGzip();
+const fs = require('fs');
+const prettyBytes = require('pretty-bytes');
 
-var prettyBytes = function(bytes) {
-  return humanize.filesize(bytes);
+const stringSize = (str, pretty) => {
+  let bytes = Buffer.byteLength(str);
+  return (pretty) ? prettyBytes(bytes) : bytes;
 };
 
-module.exports = {
-  stringSize: function(str, pretty) {
-    var bytes = Buffer.byteLength(str);
-    return (pretty) ? prettyBytes(bytes) : bytes;
-  },
-  fileSize: function(file, pretty, callback, gzip) {
-    var self = this;
-    if (typeof pretty == 'function') {
-      callback = pretty;
-      pretty = false;
-    }
+const fileSize = (file, pretty, gzip) => {
+  return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', function(err, file) {
       if (gzip) {
         zlib.gzip(file, function(err, buf) {
+          if (err) {
+            return reject(err);
+          }
           bytes = buf.length;
           bytes = (pretty) ? prettyBytes(bytes) : bytes;
-          callback(err, bytes);
+          resolve(bytes);
         });
       } else {
-        callback(err, self.stringSize(file, pretty));
+        resolve(stringSize(file, pretty));
       }
     });
-  },
-  gzipSize: function(file, pretty, callback) {
-    this.fileSize(file, pretty, callback, true);
-  }
+  });
 };
+const gzipSize = async(file, pretty) => {
+  return fileSize(file, pretty, true);
+};
+
+module.exports.stringSize = stringSize;
+module.exports.fileSize = fileSize;
+module.exports.gzipSize = gzipSize;
