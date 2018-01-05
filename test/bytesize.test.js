@@ -14,14 +14,13 @@ tap.test('pretty stringSize', (t) => {
 
 tap.test('fileSize', async(t) => {
   const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt');
-  // t.equal(size, 6660);
-  t.equal(size, 6690);
+  t.equal(size, 6660);
   t.end();
 });
 
 tap.test('pretty fileSize', async(t) => {
   const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt', true);
-  t.equal(size, '6.5 kB');
+  t.equal(size, '6.66 kB');
   t.end();
 });
 
