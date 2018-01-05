@@ -15,24 +15,24 @@ tap.test('pretty stringSize', (t) => {
 tap.test('fileSize', async(t) => {
   const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt');
   // t.equal(size, 6660);
-  t.equal(size, 6696);
+  t.equal(size, 6690);
   t.end();
 });
 
 tap.test('pretty fileSize', async(t) => {
   const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt', true);
-  t.equal(size, '6.7 kB');
+  t.equal(size, '6.5 kB');
   t.end();
 });
 
 tap.test('gzipSize', async(t) => {
   const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt');
-  t.equal(size, 192);
+  t.equal(size, 190);
   t.end();
 });
 
 tap.test('pretty gzipSize', async(t) => {
   const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt', true);
-  t.equal(size, '192 B');
+  t.equal(size, '190 B');
   t.end();
 });
