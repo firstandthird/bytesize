@@ -1,5 +1,5 @@
 const tap = require('tap');
-var bytesize = require('../');
+const bytesize = require('../');
 
 tap.test('stringSize', (t) => {
   const size = bytesize.stringSize('1 12 3 123 123');
@@ -13,25 +13,25 @@ tap.test('pretty stringSize', (t) => {
 });
 
 tap.test('fileSize', async(t) => {
-  const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt');
+  const size = await bytesize.fileSize(`${__dirname}/fixtures/test.txt`);
   t.equal(size, 6660);
   t.end();
 });
 
 tap.test('pretty fileSize', async(t) => {
-  const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt', true);
+  const size = await bytesize.fileSize(`${__dirname}/fixtures/test.txt`, true);
   t.equal(size, '6.66 kB');
   t.end();
 });
 
 tap.test('gzipSize', async(t) => {
-  const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt');
+  const size = await bytesize.gzipSize(`${__dirname}/fixtures/test.txt`);
   t.equal(size, 190);
   t.end();
 });
 
 tap.test('pretty gzipSize', async(t) => {
-  const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt', true);
+  const size = await bytesize.gzipSize(`${__dirname}/fixtures/test.txt`, true);
   t.equal(size, '190 B');
   t.end();
 });
