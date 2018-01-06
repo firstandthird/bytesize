@@ -1,10 +1,10 @@
 {
   "name": "bytesize",
   "version": "0.2.0",
-  "author": "Greg Allen <@jgaui> (http://jga.me)",
+  "author": "First and Third (https://firstandthird.com)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jgallen23/bytesize.git"
+    "url": "https://github.com/firstandthird/bytesize.git"
   },
   "scripts": {
     "test": "eslint . && tap test --cov"
