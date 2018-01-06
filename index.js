@@ -5,19 +5,19 @@ const prettyBytes = require('pretty-bytes');
 const util = require('util');
 
 const stringSize = (str, pretty) => {
-  let bytes = Buffer.byteLength(str);
-  return (pretty) ? prettyBytes(bytes) : bytes;
+  return Buffer.byteLength(str);
 };
 
 const fileSize = async(file, pretty, gzip) => {
   fileData = await util.promisify(fs.readFile)(file, 'utf8');
+  let bytes;
   if (gzip) {
     const buf = await util.promisify(zlib.gzip)(fileData);
     bytes = buf.length;
-    bytes = (pretty) ? prettyBytes(bytes) : bytes;
-    return bytes;
+  } else {
+    bytes = stringSize(fileData);
   }
-  return stringSize(fileData, pretty);
+  return (pretty) ? prettyBytes(bytes) : bytes;
 };
 
 const gzipSize = async(file, pretty) => {
