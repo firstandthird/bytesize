@@ -6,34 +6,42 @@
 
 ##Usage
 
-```
-var bytesize = require('bytesize');
+```javascript
+const bytesize = require('bytesize');
 
 //string size
-var size = bytesize.stringSize('1 12 3 123 123');
+const size = bytesize.stringSize('1 12 3 123 123');
 //size == 14
 
 //string size
-var size = bytesize.stringSize('1 12 3 123 123', true);
+const size = bytesize.stringSize('1 12 3 123 123', true);
 //size == 14B
 
-//file size
-bytesize.fileSize(__dirname + '/fixtures/test.txt', function(err, size) {
-//size == 6660
-});
+//file size (returns a Promise that you can await)
+try {
+  const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt');
+  //size == 6660
+} catch(exc) {
+  console.log(exc);
+}
 
 //pretty file size
-bytesize.fileSize(__dirname + '/fixtures/test.txt', true, function(err, size) {
-//size == '6.50KB'
-});
+try {
+  const size = await bytesize.fileSize(__dirname + '/fixtures/test.txt', true);
+  //size == '6.50KB'
+} catch(exc) {
+  console.log(exc);
+}
 
 //gzip file size
-bytesize.gzipSize(__dirname + '/fixtures/test.txt', function(err, size) {
-//size == 190
-});
+try{
+  const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt');
+  //size == 190
+} catch(exc) {
+  console.log(exc);
+}
 
 //pretty gzip file size
-bytesize.gzipSize(__dirname + '/fixtures/test.txt', true, function(err, size) {
+const size = await bytesize.gzipSize(__dirname + '/fixtures/test.txt', true);
 //size == '190B'
-});
 ```
