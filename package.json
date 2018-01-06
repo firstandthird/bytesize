@@ -7,7 +7,7 @@
     "url": "https://github.com/jgallen23/bytesize.git"
   },
   "scripts": {
-    "test": "tap test --cov"
+    "test": "eslint . && tap test --cov"
   },
   "dependencies": {
     "pretty-bytes": "^4.0.2"
@@ -17,5 +17,8 @@
     "eslint-config-firstandthird": "^4.3.0",
     "eslint-plugin-import": "^2.8.0",
     "tap": "^11.0.1"
+  },
+  "eslintConfig": {
+    "extends": "firstandthird"
   }
 }
