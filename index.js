@@ -10,6 +10,8 @@ const prettify = (bytes, pretty) => ((pretty) ? prettyBytes(bytes) : bytes);
 
 const stringSize = (str, pretty) => prettify(Buffer.byteLength(str), pretty);
 
+const gzipStringSize = async(str, pretty) => prettify((await gzipAsync(str)).byteLength, pretty);
+
 const fileSize = async(file, pretty, gzip) => {
   const fileData = await readFileAsync(file, 'utf8');
   if (gzip) {
@@ -22,5 +24,6 @@ const fileSize = async(file, pretty, gzip) => {
 const gzipSize = (file, pretty) => fileSize(file, pretty, true);
 
 module.exports.stringSize = stringSize;
+module.exports.gzipStringSize = gzipStringSize;
 module.exports.fileSize = fileSize;
 module.exports.gzipSize = gzipSize;
